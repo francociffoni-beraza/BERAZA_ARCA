@@ -364,3 +364,9 @@ Bitacora cronologica obligatoria del proyecto.
 - Cambios: Cierre del arranque de versionado con commit raiz y normalizacion de rama principal a `main`.
 - Evidencia: `git commit` genero `d51d0c3` (`59 files changed, 3863 insertions`); `git branch --show-current` devuelve `main`; `git status --short` sin cambios pendientes.
 - Siguiente accion: Configurar `origin` y ejecutar `git push -u origin main`.
+
+- Fecha: 2026-03-13
+- Paso: general
+- Cambios: Intento de alta automatica de remoto GitHub para proyecto nuevo y validacion de prerequisitos de credenciales desde terminal.
+- Evidencia: `gh` no esta instalado; variables `GITHUB_TOKEN/GH_TOKEN` no configuradas; `git credential-manager get` para `github.com` devuelve `NOT_FOUND`; intentos de `git credential-manager github login --device` sin credencial persistida en esta sesion.
+- Siguiente accion: Obtener autenticacion GitHub valida (PAT o login interactivo), crear repo remoto `cartas_de_porte`, setear `origin` y ejecutar `git push -u origin main`.
