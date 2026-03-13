@@ -1,0 +1,39 @@
+{
+  "generated_at": "2026-03-05T13:27:12.143064",
+  "environment": "prod",
+  "tax_id": "20049687495",
+  "wsid": "wscpe",
+  "cert_path": "certs/CPE_4ace6a8e9a979c89.crt",
+  "key_path": "certs/cuit_20049687495_wscpe_prod_20260305.key",
+  "auth_http_status": 200,
+  "auth": {
+    "expiration": "2026-03-06T04:27:11.935Z",
+    "token_length": 712,
+    "token_prefix": "PD94bWwgdmVy",
+    "sign_length": 172,
+    "sign_prefix": "Bvh658wkkwLr"
+  },
+  "dummy": {
+    "http_status": 200,
+    "ok": true,
+    "body": {
+      "respuesta": {
+        "appserver": "Ok",
+        "authserver": "Ok",
+        "dbserver": "Ok"
+      }
+    }
+  },
+  "consultarUltNroOrden": {
+    "http_status": 500,
+    "ok": false,
+    "request_solicitud": {
+      "sucursal": 1,
+      "tipoCPE": 74
+    },
+    "body": {
+      "code": "Internal",
+      "message": "Error: soap:Client: Error en la autenticacion: La Cuit 20049687495 no esta relacionada con el conjunto { 20042908720 }"
+    }
+  }
+}

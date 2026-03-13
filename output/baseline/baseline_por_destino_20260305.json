@@ -1,0 +1,157 @@
+{
+  "generated_at": "2026-03-05T16:58:32.458227",
+  "environment": "prod",
+  "wsid": "wscpe",
+  "tax_id_auth": "30547090523",
+  "cuit_representada": "30547090523",
+  "tipoCartaPorte": 74,
+  "fechaPartidaDesde": "2026-03-03",
+  "fechaPartidaHasta": "2026-03-05",
+  "plants": [
+    20217,
+    20218,
+    20219,
+    519447,
+    700011
+  ],
+  "ta_expiration": "2026-03-06T07:58:26.530Z",
+  "force_create_ta": true,
+  "results": [
+    {
+      "planta": 20217,
+      "http_status": 200,
+      "ok": true,
+      "body": {
+        "respuesta": {
+          "errores": {
+            "error": [
+              {
+                "codigo": "800",
+                "descripcion": "No existen solicitudes para los parámetros indicados."
+              }
+            ]
+          },
+          "metadata": {
+            "servidor": "cpea-ws-deployment-979555f8b-m8xnb",
+            "fechaHora": "2026-03-05T16:58:27.000Z"
+          }
+        }
+      }
+    },
+    {
+      "planta": 20218,
+      "http_status": 200,
+      "ok": true,
+      "body": {
+        "respuesta": {
+          "errores": {
+            "error": [
+              {
+                "codigo": "800",
+                "descripcion": "No existen solicitudes para los parámetros indicados."
+              }
+            ]
+          },
+          "metadata": {
+            "servidor": "cpea-ws-deployment-979555f8b-b9km7",
+            "fechaHora": "2026-03-05T16:58:28.000Z"
+          }
+        }
+      }
+    },
+    {
+      "planta": 20219,
+      "http_status": 200,
+      "ok": true,
+      "body": {
+        "respuesta": {
+          "cartaPorte": [
+            {
+              "tipoCartaPorte": 74,
+              "nroCTG": 10129906706,
+              "fechaPartida": "2026-03-05T10:52:07.000Z",
+              "estado": "AC",
+              "fechaUltimaModificacion": "2026-03-05T10:37:07.000Z"
+            },
+            {
+              "tipoCartaPorte": 74,
+              "nroCTG": 10129907121,
+              "fechaPartida": "2026-03-05T11:03:47.000Z",
+              "estado": "AC",
+              "fechaUltimaModificacion": "2026-03-05T10:48:52.000Z"
+            },
+            {
+              "tipoCartaPorte": 74,
+              "nroCTG": 10129907277,
+              "fechaPartida": "2026-03-05T11:08:31.000Z",
+              "estado": "AC",
+              "fechaUltimaModificacion": "2026-03-05T10:53:31.000Z"
+            },
+            {
+              "tipoCartaPorte": 74,
+              "nroCTG": 10129913996,
+              "fechaPartida": "2026-03-05T14:52:00.000Z",
+              "estado": "AC",
+              "fechaUltimaModificacion": "2026-03-05T14:41:32.000Z"
+            },
+            {
+              "tipoCartaPorte": 74,
+              "nroCTG": 10129916478,
+              "fechaPartida": "2026-03-05T15:35:00.000Z",
+              "estado": "AC",
+              "fechaUltimaModificacion": "2026-03-05T15:30:21.000Z"
+            }
+          ],
+          "errores": null,
+          "metadata": {
+            "servidor": "cpea-ws-deployment-979555f8b-b9km7",
+            "fechaHora": "2026-03-05T16:58:29.000Z"
+          }
+        }
+      }
+    },
+    {
+      "planta": 519447,
+      "http_status": 200,
+      "ok": true,
+      "body": {
+        "respuesta": {
+          "errores": {
+            "error": [
+              {
+                "codigo": "800",
+                "descripcion": "No existen solicitudes para los parámetros indicados."
+              }
+            ]
+          },
+          "metadata": {
+            "servidor": "cpea-ws-deployment-979555f8b-m8xnb",
+            "fechaHora": "2026-03-05T16:58:31.000Z"
+          }
+        }
+      }
+    },
+    {
+      "planta": 700011,
+      "http_status": 200,
+      "ok": true,
+      "body": {
+        "respuesta": {
+          "errores": {
+            "error": [
+              {
+                "codigo": "800",
+                "descripcion": "No existen solicitudes para los parámetros indicados."
+              }
+            ]
+          },
+          "metadata": {
+            "servidor": "cpea-ws-deployment-979555f8b-wzwjh",
+            "fechaHora": "2026-03-05T16:58:32.000Z"
+          }
+        }
+      }
+    }
+  ],
+  "note": "TA token/sign used in-memory only and not persisted."
+}

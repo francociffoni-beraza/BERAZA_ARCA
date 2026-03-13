@@ -1,0 +1,25 @@
+{
+  "generated_at": "2026-03-05T13:28:53.594679",
+  "environment": "prod",
+  "tax_id_auth": "20049687495",
+  "wsid": "wscpe",
+  "method": "consultarUltNroOrden",
+  "request_auth_cuitRepresentada": 20042908720,
+  "request_solicitud": {
+    "sucursal": 1,
+    "tipoCPE": 74
+  },
+  "http_status": 200,
+  "ok": true,
+  "body": {
+    "respuesta": {
+      "nroOrden": 0,
+      "errores": null,
+      "metadata": {
+        "servidor": "cpea-ws-deployment-979555f8b-b9km7",
+        "fechaHora": "2026-03-05T13:28:53.000Z"
+      }
+    }
+  },
+  "note": "TA token/sign used in-memory only and not persisted."
+}

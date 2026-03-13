@@ -1,0 +1,97 @@
+{
+  "generated_at": "2026-03-05T17:28:30.497830",
+  "environment": "prod",
+  "wsid": "wscpe",
+  "tax_id_auth": "30547090523",
+  "cuit_representada": "30547090523",
+  "cuit_solicitante": null,
+  "ctgs_query": [
+    10129920861
+  ],
+  "rows_count": 1,
+  "status_totals": {
+    "CN": 1
+  },
+  "ta_expiration": "2026-03-06T08:23:43.222Z",
+  "force_create_ta": false,
+  "rows": [
+    {
+      "ctg_query": 10129920861,
+      "http_status": 200,
+      "ok": true,
+      "error_code": null,
+      "error_desc": null,
+      "nroCTG_respuesta": 10129920861,
+      "estado": "CN",
+      "tipoCartaPorte": 74,
+      "sucursal": 0,
+      "nroOrden": 13,
+      "fechaEmision": "2026-03-05T16:59:18.000Z",
+      "fechaInicioEstado": "2026-03-05T17:06:42.000Z",
+      "fechaVencimiento": "2026-03-08T17:06:35.000Z",
+      "origen_cuit": 20081033413,
+      "origen_planta": null,
+      "destino_cuit": 30547090523,
+      "destino_planta": 20219,
+      "body": {
+        "respuesta": {
+          "cabecera": {
+            "tipoCartaPorte": 74,
+            "sucursal": 0,
+            "nroOrden": 13,
+            "nroCTG": 10129920861,
+            "fechaEmision": "2026-03-05T16:59:18.000Z",
+            "estado": "CN",
+            "fechaInicioEstado": "2026-03-05T17:06:42.000Z",
+            "fechaVencimiento": "2026-03-08T17:06:35.000Z"
+          },
+          "origen": {
+            "cuit": 20081033413,
+            "codProvincia": 1,
+            "codLocalidad": 2981
+          },
+          "correspondeRetiroProductor": false,
+          "retiroProductor": null,
+          "intervinientes": null,
+          "datosCarga": {
+            "codGrano": 23,
+            "pesoBruto": 20000,
+            "pesoTara": 13000,
+            "cosecha": 2425,
+            "pesoBrutoDescarga": 21114,
+            "pesoTaraDescarga": 14180
+          },
+          "destino": {
+            "cuit": 30547090523,
+            "codProvincia": 1,
+            "codLocalidad": 252,
+            "planta": 20219
+          },
+          "destinatario": {
+            "cuit": 30547090523
+          },
+          "transporte": {
+            "cuitTransportista": 30712659803,
+            "dominio": [
+              "AC104XB",
+              "AB966ZS"
+            ],
+            "fechaHoraPartida": "2026-03-05T17:00:00.000Z",
+            "kmRecorrer": 17,
+            "cuitChofer": 20294464388,
+            "tarifa": 1254,
+            "cuitPagadorFlete": 30547090523,
+            "mercaderiaFumigada": true
+          },
+          "pdf": "<omitted_base64_pdf>",
+          "errores": null,
+          "metadata": {
+            "servidor": "cpea-ws-deployment-979555f8b-m8xnb",
+            "fechaHora": "2026-03-05T17:28:29.000Z"
+          }
+        }
+      }
+    }
+  ],
+  "note": "TA token/sign used in-memory only and not persisted."
+}
