@@ -370,3 +370,9 @@ Bitacora cronologica obligatoria del proyecto.
 - Cambios: Intento de alta automatica de remoto GitHub para proyecto nuevo y validacion de prerequisitos de credenciales desde terminal.
 - Evidencia: `gh` no esta instalado; variables `GITHUB_TOKEN/GH_TOKEN` no configuradas; `git credential-manager get` para `github.com` devuelve `NOT_FOUND`; intentos de `git credential-manager github login --device` sin credencial persistida en esta sesion.
 - Siguiente accion: Obtener autenticacion GitHub valida (PAT o login interactivo), crear repo remoto `cartas_de_porte`, setear `origin` y ejecutar `git push -u origin main`.
+
+- Fecha: 2026-03-13
+- Paso: general
+- Cambios: Alta efectiva de repositorio remoto en GitHub para proyecto nuevo y publicacion inicial de `main`.
+- Evidencia: Repo creado via API GitHub `https://github.com/francociffoni-beraza/cartas_de_porte` (status `CREATED`); configurado `origin` a `https://github.com/francociffoni-beraza/cartas_de_porte.git`; `git push -u origin main` exitoso (`[new branch] main -> main`, tracking activo).
+- Siguiente accion: Continuar desarrollo normal con flujo `git add/commit/push` sobre `main` o abrir ramas de trabajo por hito.
