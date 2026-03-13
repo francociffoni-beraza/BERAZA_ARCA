@@ -358,3 +358,9 @@ Bitacora cronologica obligatoria del proyecto.
 - Cambios: Inicializacion de versionado Git local (`git init`) para el repo ARCA y ajuste de `.gitignore` para excluir carpeta temporal `_tmp_context7_repo_*`.
 - Evidencia: `git init` creo `.git/` en `D:\\OneDrive - Grupo Eduardo Beraza\\Desktop\\cartas_de_porte`; `git status --short` confirmo estructura inicial a versionar sin secretos (`.env`, `.env.prod`, `certs/*`, `.arca-ta-cache/*` y `output/*` siguen ignorados).
 - Siguiente accion: Crear commit inicial y vincular `origin` para primer push.
+
+- Fecha: 2026-03-13
+- Paso: general
+- Cambios: Cierre del arranque de versionado con commit raiz y normalizacion de rama principal a `main`.
+- Evidencia: `git commit` genero `d51d0c3` (`59 files changed, 3863 insertions`); `git branch --show-current` devuelve `main`; `git status --short` sin cambios pendientes.
+- Siguiente accion: Configurar `origin` y ejecutar `git push -u origin main`.
