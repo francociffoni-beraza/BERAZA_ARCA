@@ -376,3 +376,9 @@ Bitacora cronologica obligatoria del proyecto.
 - Cambios: Alta efectiva de repositorio remoto en GitHub para proyecto nuevo y publicacion inicial de `main`.
 - Evidencia: Repo creado via API GitHub `https://github.com/francociffoni-beraza/cartas_de_porte` (status `CREATED`); configurado `origin` a `https://github.com/francociffoni-beraza/cartas_de_porte.git`; `git push -u origin main` exitoso (`[new branch] main -> main`, tracking activo).
 - Siguiente accion: Continuar desarrollo normal con flujo `git add/commit/push` sobre `main` o abrir ramas de trabajo por hito.
+
+- Fecha: 2026-03-13
+- Paso: general
+- Cambios: Alta de guia operativa dedicada para tareas manuales de ARCA al renovar/emitir certificados de `wscpe`.
+- Evidencia: Nuevo archivo `docs/pasos-certificados-arca.md` con flujo manual por ambiente (`dev`/`prod`), datos obligatorios a guardar y checklist de cierre; `README.md` actualizado para referenciar la nueva guia en "Documentacion operativa".
+- Siguiente accion: Usar esta guia en la proxima renovacion de certificado y luego correr validacion tecnica local (`dummy` + `consultarUltNroOrden`).

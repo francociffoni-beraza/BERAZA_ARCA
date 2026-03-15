@@ -58,6 +58,7 @@ Actualizar bitacora CTG:
 - Estado historico y transicion: `docs/step-by-step.md`
 - Paso a paso DEV emitidas/recibidas: `docs/step-by-step-cpe-dev.md`
 - Checklist de altas/certificados/validaciones: `docs/arca-reonboarding-checklist.md`
+- Paso a paso manual ARCA para certificados nuevos: `docs/pasos-certificados-arca.md`
 
 ## Estado actual
 - Fase 1 (`wscpe` directo) implementada en codigo.
