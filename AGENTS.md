@@ -32,6 +32,19 @@ Todo avance debe dejar evidencia documental dentro del repo.
 4. Registrar evidencia (comandos, outputs, archivos).
 5. Reci despues pasar al siguiente hito.
 
+## Flujo Git correcto (PowerShell)
+1. Validar estado antes de tocar nada: `git status --short --branch`.
+2. Revisar exactamente que se va a subir (`git diff` o `git diff -- <archivo>`).
+3. Agregar archivos puntuales: `git add <archivos>`.
+4. Hacer commit con mensaje claro y humano (evitar mensajes crípticos):
+   - Formato sugerido: `<tipo>: <descripcion breve en espanol>`.
+   - Ejemplos: `docs: agrega guia manual de certificados ARCA`, `fix: corrige parseo de fecha en wsaa`.
+5. Subir cambios: `git push origin main` (o la rama activa).
+
+Notas de shell:
+- En esta terminal PowerShell, no asumir que `&&` funciona. Ejecutar un comando por linea o usar `;`.
+- Si falla un comando, corregir y volver a ejecutar ese paso, no encadenar a ciegas.
+
 ## Seguridad y secretos
 - Nunca commitear secretos (`.env`, certificados, keys, tokens).
 - Guardar certificados/keys en `certs/` local (ignorado por git).

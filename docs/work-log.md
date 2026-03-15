@@ -382,3 +382,9 @@ Bitacora cronologica obligatoria del proyecto.
 - Cambios: Alta de guia operativa dedicada para tareas manuales de ARCA al renovar/emitir certificados de `wscpe`.
 - Evidencia: Nuevo archivo `docs/pasos-certificados-arca.md` con flujo manual por ambiente (`dev`/`prod`), datos obligatorios a guardar y checklist de cierre; `README.md` actualizado para referenciar la nueva guia en "Documentacion operativa".
 - Siguiente accion: Usar esta guia en la proxima renovacion de certificado y luego correr validacion tecnica local (`dummy` + `consultarUltNroOrden`).
+
+- Fecha: 2026-03-15
+- Paso: general
+- Cambios: Se documento el flujo correcto de commit/push en PowerShell para evitar fallas por encadenado de comandos, incluyendo regla explicita de no usar `&&` en esta terminal.
+- Evidencia: `AGENTS.md` actualizado con seccion "Flujo Git correcto (PowerShell)" (secuencia `status -> diff -> add -> commit -> push`, convencion de mensajes y notas de shell).
+- Siguiente accion: Aplicar este flujo en todos los commits siguientes y mantener mensajes de commit claros y legibles para el equipo.
