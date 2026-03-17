@@ -32,6 +32,15 @@ Todo avance debe dejar evidencia documental dentro del repo.
 4. Registrar evidencia (comandos, outputs, archivos).
 5. Reci despues pasar al siguiente hito.
 
+## Memoria de chat local (sin Context7)
+1. Inicializar una sola vez el legado historico desde el ultimo commit: `py -3 scripts/context_checkpoint.py legacy-init`.
+2. Mantener contexto activo en `docs/chat-context/context_t.md` y `docs/chat-context/context_t-1.md`.
+3. Trabajar en formato jerarquico `hito -> subhitos -> mini_hitos` usando `docs/chat-context/plan.yaml` como base.
+4. Crear checkpoint al cerrar hito y tambien cada 8 interacciones relevantes si el hito sigue abierto.
+5. Si un mini-hito queda abierto (`todo`, `in_progress`, `blocked`), se arrastra automaticamente al siguiente `context_t`.
+6. Usar `py -3 scripts/context_checkpoint.py bootstrap --with-legacy` antes de refrescar chat para generar contexto pegable.
+7. Nunca guardar secretos en estos archivos (token/sign/password/keys/material criptografico).
+
 ## Flujo Git correcto (PowerShell)
 1. Validar estado antes de tocar nada: `git status --short --branch`.
 2. Revisar exactamente que se va a subir (`git diff` o `git diff -- <archivo>`).

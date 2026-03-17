@@ -12,8 +12,11 @@ Integracion ARCA directa con backend propio en Python (`WSAA + SOAP`) para el CU
 
 ## Requisitos
 - Python 3.11+
-- Dependencias: `requests`, `cryptography`
+- Dependencias: `requests`, `cryptography`, `PyYAML`
 - Certificado y key ARCA activos para el CUIT de autenticacion de Beraza.
+
+Instalacion recomendada:
+`py -3 -m pip install -r requirements.txt`
 
 ## Configuracion
 1. Copiar `.env.example` a `.env` o completar `.env.prod`.
@@ -49,6 +52,18 @@ Barrido ultimos dias:
 Actualizar bitacora CTG:
 `py -3 scripts/prod_actualizar_bitacora_ctg_recibidas.py --env-file .env.prod --fallback-env-file .env --days 3 --force-create-ta`
 
+Memoria de chat (legacy + contexto t/t-1):
+`py -3 scripts/context_checkpoint.py legacy-init`
+
+Checkpoint jerarquico (recomendado):
+`py -3 scripts/context_checkpoint.py checkpoint --plan-file docs/chat-context/plan.yaml --estado in_progress --proximo "siguiente paso" --refs "docs/work-log.md,scripts/context_checkpoint.py"`
+
+Checkpoint plano (retrocompatible):
+`py -3 scripts/context_checkpoint.py checkpoint --hito "hito-activo" --estado in_progress --objetivo "objetivo actual" --decisiones "decision 1;decision 2" --pendientes "bloqueo 1;pendiente 2" --proximo "siguiente paso" --refs "docs/work-log.md,scripts/context_checkpoint.py"`
+
+Bootstrap para refrescar chat:
+`py -3 scripts/context_checkpoint.py bootstrap --with-legacy`
+
 ## Baseline y regresion
 - Baseline congelado: `output/baseline/`.
 - Contrato de compatibilidad parcial: `docs/wscpe-compatibilidad-parcial.md`.
@@ -65,6 +80,7 @@ Actualizar bitacora CTG:
 - Paso a paso ONLY ARCA (manual web): `docs/step-by-step-only-arca-web.md`
 - Paso a paso manual ARCA para alta de servicios del CUIT: `docs/step-by-step-arca-servicios-cuit.md`
 - Manuales oficiales (base `wscpe` + fase 2 CUIT): `docs/manuales/servicios-cuit/`
+- Memoria de chat local (`legacy_worklog`, `context_t`, `context_t-1`, `bootstrap_prompt`, `plan.yaml`): `docs/chat-context/`
 
 ## Estado actual
 - Existe un core transversal de integracion ARCA en codigo (`WSAA`, cache de TA, SOAP y estructura de servicios) para operar el CUIT de Beraza con backend propio.

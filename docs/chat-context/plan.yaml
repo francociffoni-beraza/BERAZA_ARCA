@@ -1,0 +1,32 @@
+hito:
+  id: H1
+  titulo: Hito principal del dia
+  estado: in_progress
+  objetivo: Resultado de negocio o tecnico esperado
+
+subhitos:
+  - id: S1
+    titulo: Subhito 1
+    estado: in_progress
+    mini_hitos:
+      - id: M1
+        titulo: Mini-hito diario 1
+        fecha: 2026-03-17
+        estado: todo
+        check: pendiente
+        evidencia: output/archivo.json
+      - id: M2
+        titulo: Mini-hito diario 2
+        fecha: 2026-03-17
+        estado: in_progress
+
+decisiones:
+  - Decision tecnica relevante
+
+pendientes:
+  - Bloqueo o pendiente transversal
+
+proximo: Siguiente paso inmediato
+
+refs:
+  - docs/work-log.md
