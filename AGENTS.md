@@ -1,21 +1,21 @@
 ﻿# AGENTS.md
 
-## Actúa como mantenedor técnico integral de ARCA
-Actúa como responsable técnico del sistema ARCA del repo: prioriza interoperabilidad real con servicios oficiales (WSAA + SOAP), continuidad operativa y evidencia documental trazable.
+## Actua como mantenedor tecnico integral de ARCA
+Actua como responsable tecnico del sistema ARCA del repo: prioriza interoperabilidad real con servicios oficiales (WSAA + SOAP), continuidad operativa y evidencia documental trazable para el CUIT de Beraza.
 
 ## Objetivo vigente del repo
-Construir y operar un backend Python propio para ARCA, sin dependencia operativa de SDKs de terceros cuando exista integracion directa viable.
+Construir y operar un backend Python propio para la integracion ARCA del CUIT de Beraza, sin dependencia operativa de SDKs de terceros cuando exista integracion directa viable.
 
 Regla de oro de ejecucion:
-1. Primero cerrar paridad operativa de `wscpe` sobre backend propio (`WSAA + SOAP + wscpe`).
-2. Reci en ese punto ampliar alcance a otros servicios (`wsfe`, `wscdc`, padron, etc.).
+1. Primero cerrar paridad operativa de `wscpe` como primer modulo productivo sobre backend propio (`WSAA + SOAP + core de servicios`).
+2. Reci en ese punto ampliar alcance a otros modulos (`wsfe`, `wscdc`, padron, etc.) reutilizando el mismo core comun.
 3. No mezclar riesgo protocolar con refactor cosmetico.
 
 ## Prioridad operativa
-1. Paridad funcional y estabilidad en produccion/homologacion.
+1. Paridad funcional y estabilidad por modulo en produccion/homologacion.
 2. Observabilidad y errores legibles.
 3. Documentacion y evidencia de cada cambio.
-4. Recien despues, mejoras de arquitectura o UX de CLI.
+4. Reci despues, mejoras de arquitectura o UX de CLI.
 
 ## Regla innegociable: documentar siempre
 Todo avance debe dejar evidencia documental dentro del repo.
@@ -26,7 +26,7 @@ Todo avance debe dejar evidencia documental dentro del repo.
 5. Si no esta documentado, se considera incompleto.
 
 ## Modo de trabajo recomendado
-1. Definir hito activo y criterio de salida.
+1. Definir hito activo, modulo objetivo y criterio de salida.
 2. Implementar lo minimo necesario para cerrar ese hito.
 3. Ejecutar pruebas unitarias/integracion aplicables.
 4. Registrar evidencia (comandos, outputs, archivos).
@@ -36,7 +36,7 @@ Todo avance debe dejar evidencia documental dentro del repo.
 1. Validar estado antes de tocar nada: `git status --short --branch`.
 2. Revisar exactamente que se va a subir (`git diff` o `git diff -- <archivo>`).
 3. Agregar archivos puntuales: `git add <archivos>`.
-4. Hacer commit con mensaje claro y humano (evitar mensajes crípticos):
+4. Hacer commit con mensaje claro y humano (evitar mensajes cripticos):
    - Formato sugerido: `<tipo>: <descripcion breve en espanol>`.
    - Ejemplos: `docs: agrega guia manual de certificados ARCA`, `fix: corrige parseo de fecha en wsaa`.
 5. Subir cambios: `git push origin main` (o la rama activa).
@@ -53,6 +53,7 @@ Notas de shell:
 
 ## Convenciones del repo
 - Core de integracion: `src/arca/`
+- Modulos por servicio: `src/arca/services/`
 - Scripts operativos: `scripts/`
 - Evidencia de corridas: `output/`
 - Documentacion operativa: `docs/`
@@ -68,4 +69,4 @@ Un hito esta terminado cuando:
 No inventar datos de ARCA. Registrar bloqueo, dejar evidencia y continuar con el siguiente item no bloqueado del mismo hito.
 
 ## Estado de `docs/step-by-step.md`
-`docs/step-by-step.md` se mantiene como documento historico de la fase AfipSDK y transicion. La ejecucion vigente se gobierna por hitos, bitacora y checklist de re-onboarding.
+`docs/step-by-step.md` se mantiene como documento historico de la fase AfipSDK y transicion. La ejecucion vigente se gobierna por hitos, bitacora y checklist de re-onboarding, con `wscpe` como primer modulo de una integracion ARCA mas amplia.
