@@ -388,3 +388,57 @@ Bitacora cronologica obligatoria del proyecto.
 - Cambios: Se documento el flujo correcto de commit/push en PowerShell para evitar fallas por encadenado de comandos, incluyendo regla explicita de no usar `&&` en esta terminal.
 - Evidencia: `AGENTS.md` actualizado con seccion "Flujo Git correcto (PowerShell)" (secuencia `status -> diff -> add -> commit -> push`, convencion de mensajes y notas de shell).
 - Siguiente accion: Aplicar este flujo en todos los commits siguientes y mantener mensajes de commit claros y legibles para el equipo.
+
+- Fecha: 2026-03-16
+- Paso: general
+- Cambios: Rearmado completo de `docs/step-by-step.md` en formato historico (Estado global + Seguimiento detallado), usando como base operativa vigente el contenido de `docs/step-by-step-cpe-dev.md`.
+- Evidencia: `docs/step-by-step.md` actualizado con 8 pasos operativos (`preparacion`, `alta ARCA`, `smoke`, `emitidas`, `recibidas`, `naming`, `troubleshooting`, `cierre`) y referencias a comandos/scripts/evidencias de corrida del 2026-03-13.
+- Siguiente accion: Ejecutar una corrida DEV completa usando el nuevo `docs/step-by-step.md` como guia rapida y registrar cualquier ajuste en esta bitacora.
+
+- Fecha: 2026-03-16
+- Paso: general
+- Cambios: Renombre del nombre visible del proyecto de `cartas_de_porte` a `BERAZA_ARCA` en documentacion principal.
+- Evidencia: `README.md` actualizado en el titulo (`# BERAZA_ARCA`).
+- Siguiente accion: Si se quiere alinear naming completo, renombrar tambien carpeta local y repositorio remoto GitHub al mismo identificador.
+
+- Fecha: 2026-03-16
+- Paso: general
+- Cambios: Intento de renombre fisico de carpeta local del repo a `BERAZA_ARCA`.
+- Evidencia: Comando `Rename-Item -Path "d:\\OneDrive - Grupo Eduardo Beraza\\Desktop\\cartas_de_porte" -NewName "BERAZA_ARCA"` devolvio error de Windows: `El proceso no puede obtener acceso al archivo porque esta siendo utilizado en otro proceso`.
+- Siguiente accion: Cerrar procesos que tengan abierta la carpeta (IDE/terminal/explorador), reintentar renombre desde `d:\\OneDrive - Grupo Eduardo Beraza\\Desktop` y luego validar `git status --short --branch`.
+
+- Fecha: 2026-03-16
+- Paso: general
+- Cambios: Creacion de repo remoto nuevo `BERAZA_ARCA` y migracion de remoto Git para evitar riesgos de renombre fisico mientras la carpeta local esta en uso.
+- Evidencia: API GitHub respondio `REPO_CREATED`; remotos actualizados a `origin=https://github.com/francociffoni-beraza/BERAZA_ARCA.git` y `origin_legacy=https://github.com/francociffoni-beraza/cartas_de_porte.git`; `git push -u origin main` exitoso (rama `main` trackeando nuevo `origin/main`).
+- Siguiente accion: Mantener trabajo diario contra `origin` (BERAZA_ARCA); renombrar carpeta local cuando no este bloqueada y, si se desea, archivar luego el repo legacy.
+
+- Fecha: 2026-03-16
+- Paso: general
+- Cambios: Validacion post-renombre de carpeta local a `BERAZA_ARCA` y correccion de bloqueo Git por ownership (`dubious ownership`) para estabilizar la UI/estado en Visual Studio.
+- Evidencia: `git status` inicial fallo con `detected dubious ownership`; se ejecuto `git config --global --add safe.directory "D:/OneDrive - Grupo Eduardo Beraza/Desktop/BERAZA_ARCA"` y luego `git status --short --branch` quedo operativo. Pruebas tecnicas: `py -3 -m unittest discover -s tests -p "test_*.py"` -> `Ran 4 tests ... OK`; validacion de scripts con `--help` OK en `scripts/wscpe_dummy.py`, `scripts/wscpe_consultar_ult_nro_orden.py` y `scripts/prod_consultar_cpe_por_destino.py`.
+- Siguiente accion: Si Visual Studio sigue mostrando errores de cache/rutas, recargar ventana del workspace y reindexar el interprete Python sobre la carpeta `BERAZA_ARCA`.
+
+- Fecha: 2026-03-16
+- Paso: general
+- Cambios: Descarga y versionado de manuales oficiales para iterar servicios CUIT fuera de `wscpe` (fase 2), con trazabilidad por hash.
+- Evidencia: Carpeta nueva `docs/manuales/servicios-cuit/` con 7 manuales (`wsaa`, `wsfev1`, `wscdc`, `ws_sr_constancia_inscripcion`, `ws_sr_padron_a13`, `wslpg`, `wsfecred`), todos verificados por `HTTP 200` contra dominios oficiales (`arca.gob.ar` y `servicioscf.afip.gob.ar`); `manifest.json` generado con `size_bytes` y `sha256`; indice humano en `docs/manuales/servicios-cuit/README.md`; `README.md` y `docs/step-by-step.md` actualizados para referenciar el paquete documental.
+- Siguiente accion: Cuando cierres certificados/relaciones ARCA, arrancar implementacion por orden de prioridad (`wsfe` -> `wscdc` -> padron), tomando este paquete como baseline documental.
+
+- Fecha: 2026-03-16
+- Paso: general
+- Cambios: Correccion del paquete documental para incluir tambien el manual oficial de `wscpe`, que habia quedado fuera de la primera tanda.
+- Evidencia: Descargado `docs/manuales/servicios-cuit/wscpe_manual_desarrollador.pdf` desde `https://www.arca.gob.ar/ws/documentos/manual-wscpe.pdf` (`HTTP 200`); `manifest.json` actualizado con `service=wscpe`, `size_bytes=5587250`, `sha256=b05290d1d9a6ae3a1aeb4133b8dc1767964791986cae037059f8132ceef25145`; `docs/manuales/servicios-cuit/README.md` regenerado; referencias ajustadas en `README.md` y `docs/step-by-step.md` para aclarar que el directorio cubre base `wscpe` + fase 2.
+- Siguiente accion: Usar `wscpe` como referencia protocolar para el esqueleto de `wsfe` manteniendo el mismo criterio de trazabilidad documental por servicio.
+
+- Fecha: 2026-03-16
+- Paso: general
+- Cambios: Se agrega guia unica para tareas manuales en ARCA al habilitar servicios del CUIT (base `wscpe` + fase 2), separada del flujo de certificados.
+- Evidencia: Nuevo archivo `docs/step-by-step-arca-servicios-cuit.md` con secuencia operativa por ambiente (`dev`/`prod`), orden recomendado de habilitacion de servicios y criterio de salida del gate ARCA; `README.md` y `docs/step-by-step.md` actualizados para enlazar la guia.
+- Siguiente accion: Ejecutar la guia en ARCA al dar de alta `wsfev1` y registrar en esta bitacora la evidencia puntual de relacion activa por servicio.
+
+- Fecha: 2026-03-16
+- Paso: general
+- Cambios: Se crea un paso a paso "ONLY ARCA" enfocado solo en tareas manuales dentro de la pagina (WSASS + Administrador de Relaciones), sin comandos locales ni backend.
+- Evidencia: Nuevo archivo `docs/step-by-step-only-arca-web.md`; referencias agregadas en `README.md` y `docs/step-by-step.md` para acceso rapido.
+- Siguiente accion: Usar este archivo como checklist operativo cuando hagas altas/relaciones manuales en ARCA y registrar resultado por servicio en esta bitacora.

@@ -1,18 +1,19 @@
-﻿# cartas_de_porte
+# BERAZA_ARCA
 
-Integracion ARCA directa para Carta de Porte (`wscpe`) con backend propio en Python (`WSAA + SOAP`) y foco en paridad operativa.
+Integracion ARCA directa con backend propio en Python (`WSAA + SOAP`) para el CUIT de Beraza, con foco en construir una base comun reusable por servicio y cerrar primero la paridad operativa de Carta de Porte (`wscpe`) como primer modulo productivo.
 
 ## Arquitectura vigente
 - `src/arca/wsaa`: TRA, firma CMS/PKCS7, `loginCms`, parse TA.
 - `src/arca/cache`: cache local de TA por `ambiente/servicio/cuit`.
 - `src/arca/soap`: envelope, transporte, parseo de fault, retries.
-- `src/arca/services/wscpe.py`: adapter de negocio (`dummy`, `consultarUltNroOrden`, `consultarCPEAutomotor`, `consultarCPEPorDestino`).
-- `scripts/`: CLI operativas con contrato compatible.
+- `src/arca/services/`: modulos de negocio por servicio ARCA montados sobre el core comun.
+- `src/arca/services/wscpe.py`: primer modulo operativo (`dummy`, `consultarUltNroOrden`, `consultarCPEAutomotor`, `consultarCPEPorDestino`).
+- `scripts/`: CLI operativas con contrato compatible y base reutilizable para nuevos servicios.
 
 ## Requisitos
 - Python 3.11+
 - Dependencias: `requests`, `cryptography`
-- Certificado y key ARCA activos para el CUIT de autenticacion.
+- Certificado y key ARCA activos para el CUIT de autenticacion de Beraza.
 
 ## Configuracion
 1. Copiar `.env.example` a `.env` o completar `.env.prod`.
@@ -28,6 +29,8 @@ Integracion ARCA directa para Carta de Porte (`wscpe`) con backend propio en Pyt
 Nota: `AFIPSDK_ACCESS_TOKEN` queda solo como variable legacy de regresion; no es requerida para operacion diaria.
 
 ## Comandos principales
+Los comandos vigentes corresponden al modulo `wscpe`, que hoy es el primer WIN operativo dentro de la integracion ARCA del CUIT de Beraza.
+
 Smoke:
 `py -3 scripts/wscpe_dummy.py --env-file .env.prod --fallback-env-file .env`
 
@@ -59,8 +62,12 @@ Actualizar bitacora CTG:
 - Paso a paso DEV emitidas/recibidas: `docs/step-by-step-cpe-dev.md`
 - Checklist de altas/certificados/validaciones: `docs/arca-reonboarding-checklist.md`
 - Paso a paso manual ARCA para certificados nuevos: `docs/pasos-certificados-arca.md`
+- Paso a paso ONLY ARCA (manual web): `docs/step-by-step-only-arca-web.md`
+- Paso a paso manual ARCA para alta de servicios del CUIT: `docs/step-by-step-arca-servicios-cuit.md`
+- Manuales oficiales (base `wscpe` + fase 2 CUIT): `docs/manuales/servicios-cuit/`
 
 ## Estado actual
-- Fase 1 (`wscpe` directo) implementada en codigo.
-- Dependencias manuales ARCA (altas/relaciones/certificados) se gestionan por checklist.
-- Fase 2 (`wsfe`, `wscdc`, padron) queda para despues de consolidar paridad operativa diaria.
+- Existe un core transversal de integracion ARCA en codigo (`WSAA`, cache de TA, SOAP y estructura de servicios) para operar el CUIT de Beraza con backend propio.
+- `wscpe` es el primer modulo implementado y el primer WIN operativo sobre esa base comun.
+- Dependencias manuales ARCA (altas, relaciones, certificados y validaciones) se gestionan por checklist.
+- La incorporacion de `wsfe`, `wscdc`, padron y otros servicios queda prevista sobre el mismo core, despues de consolidar la paridad operativa diaria de `wscpe`.

@@ -1,0 +1,74 @@
+﻿[
+    {
+        "downloaded_at":  "2026-03-16T21:21:03-03:00",
+        "service":  "ws_sr_constancia_inscripcion",
+        "file":  "ws_sr_constancia_inscripcion_manual_v4.1.pdf",
+        "source_domain":  "arca.gob.ar",
+        "url":  "https://www.arca.gob.ar/ws/WSCI/manual_ws_sr_ws_constancia_inscripcion.pdf",
+        "size_bytes":  1025136,
+        "sha256":  "cb0778b8644d6bbf1e1d26125ba2a8b15688ee09f30f26724c56f66783cc520d"
+    },
+    {
+        "downloaded_at":  "2026-03-16T21:21:03-03:00",
+        "service":  "ws_sr_padron_a13",
+        "file":  "ws_sr_padron_a13_manual_v1.3.pdf",
+        "source_domain":  "arca.gob.ar",
+        "url":  "https://www.arca.gob.ar/ws/ws-padron-a13/manual-ws-sr-padron-a13-v1.3.pdf",
+        "size_bytes":  541840,
+        "sha256":  "b9c08145206accf559264a18a81c1761c7efa7e6925fa963080ab7ed38da0c15"
+    },
+    {
+        "downloaded_at":  "2026-03-16T21:21:03-03:00",
+        "service":  "wsaa",
+        "file":  "wsaa_manual_dev.pdf",
+        "source_domain":  "arca.gob.ar",
+        "url":  "https://www.arca.gob.ar/ws/WSAA/WSAAmanualDev.pdf",
+        "size_bytes":  1656151,
+        "sha256":  "b52436973e46adcf848a14fe2a0595e8566ccf9e3be616a8985d43c7f65dfbff"
+    },
+    {
+        "downloaded_at":  "2026-03-16T21:21:03-03:00",
+        "service":  "wscdc",
+        "file":  "wscdc_manual_desarrollador_v0.4.pdf",
+        "source_domain":  "arca.gob.ar",
+        "url":  "https://www.arca.gob.ar/ws/WSCDCV1/WSCDC-manual-desarrollador-v4.pdf",
+        "size_bytes":  934294,
+        "sha256":  "afdc68b89ee32b92574b95fba15d3328f5a7b203639d8c5f016136d256bc55b8"
+    },
+    {
+        "downloaded_at":  "2026-03-16T21:28:14-03:00",
+        "service":  "wscpe",
+        "file":  "wscpe_manual_desarrollador.pdf",
+        "source_domain":  "arca.gob.ar",
+        "url":  "https://www.arca.gob.ar/ws/documentos/manual-wscpe.pdf",
+        "size_bytes":  5587250,
+        "sha256":  "b05290d1d9a6ae3a1aeb4133b8dc1767964791986cae037059f8132ceef25145"
+    },
+    {
+        "downloaded_at":  "2026-03-16T21:21:03-03:00",
+        "service":  "wsfecred",
+        "file":  "wsfecred_manual_desarrollador_v2.0.0.pdf",
+        "source_domain":  "servicioscf.afip.gob.ar",
+        "url":  "https://servicioscf.afip.gob.ar/facturadecreditoelectronica/documentos/Manual_Desarrollador_WSFECRED_v2.0.0.pdf",
+        "size_bytes":  2436647,
+        "sha256":  "8a460790cefaacd1c38ffaf7eded3e256d71eb611de1aa81a22a9fb11a4cbd87"
+    },
+    {
+        "downloaded_at":  "2026-03-16T21:21:03-03:00",
+        "service":  "wsfev1",
+        "file":  "wsfev1_manual_desarrollador_v4.1.pdf",
+        "source_domain":  "arca.gob.ar",
+        "url":  "https://www.arca.gob.ar/ws/documentacion/manuales/manual-desarrollador-ARCA-COMPG-v4-1.pdf",
+        "size_bytes":  3637020,
+        "sha256":  "4252025f6b79084b765ae972505c5f456cf132ac25b4229fa622357a43629770"
+    },
+    {
+        "downloaded_at":  "2026-03-16T21:21:03-03:00",
+        "service":  "wslpg",
+        "file":  "wslpg_manual_desarrollador_v1.24.pdf",
+        "source_domain":  "arca.gob.ar",
+        "url":  "https://www.arca.gob.ar/ws/WSLiquiGranos/manual_wslpg_1.24.pdf",
+        "size_bytes":  7142689,
+        "sha256":  "93518f62253d01f1f3c72318f75f0071012b0e36a7eb3719a31bbffa3dbee9d6"
+    }
+]
