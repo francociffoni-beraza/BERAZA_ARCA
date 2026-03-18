@@ -1,9 +1,7 @@
-# Pasos Manuales ARCA - Nuevos Certificados `wscpe`
+# Pasos Manuales ARCA - Nuevos Certificados `wscpe` (Activo)
 
-> Documento historico; version activa en `to_do/arca/02-certificados.md`.
-
-Fecha: 2026-03-13
-Scope: tareas que se hacen si o si en la web de ARCA para homologacion (`dev`) y produccion (`prod`).
+Fecha: 2026-03-18
+Scope: tareas manuales obligatorias en la web de ARCA para homologacion (`dev`) y produccion (`prod`).
 
 ## 1) Regla base
 1. Homologacion y produccion se gestionan por separado.

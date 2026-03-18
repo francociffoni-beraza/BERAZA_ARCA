@@ -78,4 +78,4 @@ Un hito esta terminado cuando:
 No inventar datos de ARCA. Registrar bloqueo, dejar evidencia y continuar con el siguiente item no bloqueado del mismo hito.
 
 ## Estado de `docs/step-by-step.md`
-`docs/step-by-step.md` se mantiene como documento historico de la fase AfipSDK y transicion. La ejecucion vigente se gobierna por hitos, bitacora y checklist de re-onboarding, con `wscpe` como primer modulo de una integracion ARCA mas amplia.
+`docs/step-by-step.md` se mantiene como documento historico de la fase legacy y transicion. La ejecucion vigente se gobierna por hitos, bitacora y checklist de re-onboarding, con `wscpe` como primer modulo de una integracion ARCA mas amplia.

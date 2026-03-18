@@ -1,7 +1,8 @@
 # Step by step - Carta de Porte (ARCA directo / wscpe)
 
 > Nota 2026-03-16: este documento conserva el formato historico del paso a paso original y usa como base operativa el flujo vigente de `docs/step-by-step-cpe-dev.md`.
-> La ejecucion actual se sigue por hitos y trazabilidad en `docs/work-log.md`, con checklist de alta/validacion en `docs/arca-reonboarding-checklist.md`.
+> Nota 2026-03-18: la ejecucion actual por hitos/minihitos se sigue en `to_do/step-by-step-actual.md`, con trazabilidad obligatoria en `docs/work-log.md` y checklist de alta/validacion en `docs/arca-reonboarding-checklist.md`.
+> Nota 2026-03-18: para operacion manual en la web oficial de ARCA, el flujo activo se sigue en `to_do/arca/README.md`; las guias de `docs/step-by-step-only-arca-web.md`, `docs/pasos-certificados-arca.md`, `docs/step-by-step-arca-servicios-cuit.md` y `docs/arca-reonboarding-checklist.md` quedan como historicas.
 
 Fecha base: 2026-03-13
 WS: `wscpe`
@@ -118,6 +119,7 @@ Evidencia:
 - Plantilla y ejemplos de registro disponibles en `docs/work-log.md`.
 
 ## Nota de transicion
+- Flujo manual ARCA web activo: `to_do/arca/README.md`.
 - `docs/step-by-step-cpe-dev.md` queda como version expandida para uso diario.
 - Este archivo (`docs/step-by-step.md`) queda como version resumida en formato historico para seguimiento rapido por pasos.
 - Paso a paso ONLY ARCA (solo web/manual): `docs/step-by-step-only-arca-web.md`.

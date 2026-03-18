@@ -1,5 +1,7 @@
 # Step by Step ONLY ARCA (Manual Web)
 
+> Documento historico; version activa en `to_do/arca/01-only-web.md`.
+
 Fecha: 2026-03-16  
 Scope: solo tareas manuales en la pagina de ARCA (altas, relaciones y autorizaciones).  
 No incluye comandos locales, scripts ni configuracion `.env`.

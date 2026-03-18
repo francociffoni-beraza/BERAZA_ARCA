@@ -29,7 +29,7 @@ Instalacion recomendada:
    - `ARCA_TIMEOUT_SECONDS`, `ARCA_VERIFY_TLS`
    - `ARCA_TA_CACHE_DIR`
 
-Nota: `AFIPSDK_ACCESS_TOKEN` queda solo como variable legacy de regresion; no es requerida para operacion diaria.
+Nota: no se usa access token externo; la autenticacion diaria se resuelve con TA de WSAA (`token/sign`).
 
 ## Comandos principales
 Los comandos vigentes corresponden al modulo `wscpe`, que hoy es el primer WIN operativo dentro de la integracion ARCA del CUIT de Beraza.
@@ -71,14 +71,16 @@ Bootstrap para refrescar chat:
 - Naming de datos por corrida: `<proceso>_<YYYYMMDD_HHMMSS>_<ws_sufijo>.<ext>` en `output/runs/YYYY/MM/DD/run_YYYYMMDD_HHMMSS/`.
 
 ## Documentacion operativa
+- Flujo activo ARCA web (manual): `to_do/arca/README.md`
 - Reglas de colaboracion: `AGENTS.md`
 - Bitacora obligatoria: `docs/work-log.md`
+- Plan operativo actual por hitos/minihitos: `to_do/step-by-step-actual.md`
 - Estado historico y transicion: `docs/step-by-step.md`
 - Paso a paso DEV emitidas/recibidas: `docs/step-by-step-cpe-dev.md`
-- Checklist de altas/certificados/validaciones: `docs/arca-reonboarding-checklist.md`
-- Paso a paso manual ARCA para certificados nuevos: `docs/pasos-certificados-arca.md`
-- Paso a paso ONLY ARCA (manual web): `docs/step-by-step-only-arca-web.md`
-- Paso a paso manual ARCA para alta de servicios del CUIT: `docs/step-by-step-arca-servicios-cuit.md`
+- Checklist de altas/certificados/validaciones (historico): `docs/arca-reonboarding-checklist.md`
+- Paso a paso manual ARCA para certificados nuevos (historico): `docs/pasos-certificados-arca.md`
+- Paso a paso ONLY ARCA (manual web, historico): `docs/step-by-step-only-arca-web.md`
+- Paso a paso manual ARCA para alta de servicios del CUIT (historico): `docs/step-by-step-arca-servicios-cuit.md`
 - Manuales oficiales (base `wscpe` + fase 2 CUIT): `docs/manuales/servicios-cuit/`
 - Memoria de chat local (`legacy_worklog`, `context_t`, `context_t-1`, `bootstrap_prompt`, `plan.yaml`): `docs/chat-context/`
 

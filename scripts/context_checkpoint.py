@@ -36,11 +36,6 @@ INTERNAL_SNAPSHOT_RE = re.compile(
     r"## Internal Snapshot\s*```json\s*([\s\S]*?)\s*```",
     flags=re.IGNORECASE,
 )
-EXPLICIT_ENV_KEYS = (
-    "AFIPSDK_ACCESS_TOKEN",
-    "ARCA_PASSWORD",
-    "AFIP_PASSWORD",
-)
 
 
 @dataclass(frozen=True)
@@ -104,19 +99,11 @@ def sanitize_text(value: str) -> str:
         return f"{key}{sep}{REDACTED}"
 
     text = re.sub(
-        r"\b(token|sign|password|secret|api[_-]?key|access[_-]?token)\b(\s*[:=]\s*)([^\s,;`]+)",
+        r"\b([A-Za-z0-9_]*(?:token|sign|password|secret|api[_-]?key|access[_-]?token))\b(\s*[:=]\s*)([^\s,;`]+)",
         redact_inline,
         text,
         flags=re.IGNORECASE,
     )
-
-    for env_key in EXPLICIT_ENV_KEYS:
-        text = re.sub(
-            rf"\b({re.escape(env_key)})\b(\s*[:=]\s*)([^\s,;`]+)",
-            redact_inline,
-            text,
-            flags=re.IGNORECASE,
-        )
 
     return text
 

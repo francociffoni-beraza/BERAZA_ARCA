@@ -26,7 +26,7 @@ Integracion ARCA directa con backend propio en Python (`WSAA + SOAP`) para el CU
    - `ARCA_TIMEOUT_SECONDS`, `ARCA_VERIFY_TLS`
    - `ARCA_TA_CACHE_DIR`
 
-Nota: `AFIPSDK_ACCESS_TOKEN` queda solo como variable legacy de regresion; no es requerida para operacion diaria.
+Nota: no se usa access token externo; la autenticacion diaria se resuelve con TA de WSAA (`token/sign`).
 
 ## Comandos principales
 Los comandos vigentes corresponden al modulo `wscpe`, que hoy es el primer WIN operativo dentro de la integracion ARCA del CUIT de Beraza.

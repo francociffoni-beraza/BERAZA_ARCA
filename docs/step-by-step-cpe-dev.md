@@ -5,8 +5,8 @@ Scope: homologacion (`AFIP_ENV=dev`) para bajar CPE emitidas y recibidas del CUI
 
 ## 0) Objetivo y aclaracion clave
 - Objetivo: obtener y mantener actualizado el universo operativo de CPE emitidas y recibidas.
-- Integracion actual: ARCA directo (`WSAA + SOAP + wscpe`) sin dependencia operativa de AfipSDK.
-- Aclaracion: no necesitas un token de AfipSDK.  
+- Integracion actual: ARCA directo (`WSAA + SOAP + wscpe`) sin dependencia operativa de proveedores externos.
+- Aclaracion: no necesitas un token externo.  
   En ARCA directo se usa **TA de WSAA** (`token/sign`), generado localmente desde certificado + key.
 
 ## 1) Preparacion local (`.env` DEV)

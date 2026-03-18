@@ -1,4 +1,4 @@
-# Matriz de Compatibilidad Parcial - Migracion AfipSDK a ARCA Directo
+# Matriz de Compatibilidad Parcial - Migracion Legacy a ARCA Directo
 
 Fecha: 2026-03-12  
 Scope Fase 1: `wscpe` (`dummy`, `consultarUltNroOrden`, `consultarCPEAutomotor`, `consultarCPEPorDestino`)
@@ -18,7 +18,7 @@ Scope Fase 1: `wscpe` (`dummy`, `consultarUltNroOrden`, `consultarCPEAutomotor`,
 
 Compatibilidad transitoria:
 - Se mantienen `AFIP_ENV`, `AFIP_CUIT`, `AFIP_CUIT_REPRESENTADA`, `AFIP_CERT_PATH`, `AFIP_KEY_PATH`.
-- `AFIPSDK_ACCESS_TOKEN` deja de ser requerido en runtime.
+- No se requiere access token externo en runtime.
 
 ## Matriz script por script
 
@@ -40,4 +40,4 @@ Compatibilidad transitoria:
 - No se permite:
   - eliminar campos clave existentes,
   - cambiar semantica de filtros/flags operativos,
-  - reintroducir dependencia operativa en `AFIPSDK_ACCESS_TOKEN`.
+  - reintroducir dependencia operativa en access token externo.

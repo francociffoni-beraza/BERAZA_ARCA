@@ -69,7 +69,7 @@ Para que sirve: operar continuidad cuando hay problemas de disponibilidad o cont
 4. Integrar una accion de incidencias (`desvioCPEAutomotor`) con aprobacion interna previa.
 
 ## Fuentes oficiales consultadas
-- https://afipsdk.com/docs/api-reference/web-services/wscpe/
-- https://afipsdk.com/docs/api-reference/web-services/wscpe/consultarCPEAutomotor/prod/api/
-- https://afipsdk.com/docs/api-reference/web-services/wscpe/consultarCPEPorDestino/dev/api/
-- https://afipsdk.com/docs/api-reference/web-services/wscpe/consultarPlantas/dev/api/
+- `docs/manuales/servicios-cuit/wscpe_manual_desarrollador.pdf`
+- `docs/manuales/servicios-cuit/wsaa_manual_dev.pdf`
+- https://www.arca.gob.ar/ws/documentacion/wsaa.asp
+- https://www.arca.gob.ar/ws/documentacion/ws-factura-electronica.asp

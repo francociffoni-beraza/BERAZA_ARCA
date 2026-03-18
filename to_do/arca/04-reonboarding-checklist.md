@@ -1,8 +1,6 @@
-# ARCA Re-Onboarding Checklist
+# ARCA Re-Onboarding Checklist (Activo)
 
-> Documento historico; version activa en `to_do/arca/04-reonboarding-checklist.md`.
-
-Fecha ultima actualizacion: 2026-03-12
+Fecha ultima actualizacion: 2026-03-18
 
 ## 1) Identidad
 - [ ] CUIT integrador confirmado (`AFIP_CUIT`):
@@ -42,4 +40,4 @@ Fecha ultima actualizacion: 2026-03-12
 ## 6) Gate de avance a nuevos servicios
 - [ ] Paridad operativa de `wscpe` confirmada (corridas diarias estables).
 - [ ] Incidentes abiertos de WSAA/SOAP cerrados.
-- [ ] Recién con esto habilitar fase 2 (`wsfe`, `wscdc`, padron).
+- [ ] Reci en ese punto habilitar fase 2 (`wsfe`, `wscdc`, padron).

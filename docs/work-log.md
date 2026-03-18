@@ -15,7 +15,7 @@ Bitacora cronologica obligatoria del proyecto.
 - Paso: general
 - Cambios: Creacion de estructura base del repo (`src/`, `scripts/`, `output/`, `certs/`) y documentacion inicial (`README.md`, `AGENTS.md`, `docs/step-by-step.md`, `.env.example`, `.gitignore`).
 - Evidencia: Archivos y carpetas creados en el workspace.
-- Siguiente accion: Completar Paso 1 cargando `AFIPSDK_ACCESS_TOKEN` en `.env`.
+- Siguiente accion: Completar Paso 1 cargando `LEGACY_ACCESS_TOKEN` en `.env`.
 
 - Fecha: 2026-03-03
 - Paso: general
@@ -26,7 +26,7 @@ Bitacora cronologica obligatoria del proyecto.
 - Fecha: 2026-03-03
 - Paso: 1
 - Cambios: Cierre formal del Paso 1 (`access_token`) con verificacion de presencia de variable y proteccion de secretos.
-- Evidencia: `.env` contiene `AFIPSDK_ACCESS_TOKEN` (validado sin exponer valor) y `.env` esta ignorado por `.gitignore`.
+- Evidencia: `.env` contiene `LEGACY_ACCESS_TOKEN` (validado sin exponer valor) y `.env` esta ignorado por `.gitignore`.
 - Siguiente accion: Avanzar Paso 2 validando ambiente y CUIT operativo para iteracion.
 
 - Fecha: 2026-03-03
@@ -85,8 +85,8 @@ Bitacora cronologica obligatoria del proyecto.
 
 - Fecha: 2026-03-05
 - Paso: 5
-- Cambios: Primer intento de obtencion de TA con Afip SDK usando el certificado definitivo del CUIT `20049687495`.
-- Evidencia: Llamada `POST https://app.afipsdk.com/api/v1/afip/auth` con `AFIP_ENV=dev` y `wsid=wscpe`; respuesta `HTTP 400` con `ns1:coe.notAuthorized`; evidencia sanitizada en `output/ta_wscpe_dev_20260305_122357.json`.
+- Cambios: Primer intento de obtencion de TA con ProveedorLegacy usando el certificado definitivo del CUIT `20049687495`.
+- Evidencia: Llamada `POST https://app.proveedor-legacy.example/api/v1/afip/auth` con `AFIP_ENV=dev` y `wsid=wscpe`; respuesta `HTTP 400` con `ns1:coe.notAuthorized`; evidencia sanitizada en `output/ta_wscpe_dev_20260305_122357.json`.
 - Siguiente accion: Reabrir Paso 4 y autorizar efectivamente `wscpe` para el DN/certificado en ARCA (WSASS), luego reintentar TA.
 
 - Fecha: 2026-03-05
@@ -103,8 +103,8 @@ Bitacora cronologica obligatoria del proyecto.
 
 - Fecha: 2026-03-05
 - Paso: 5
-- Cambios: Reintento de obtencion de TA con Afip SDK luego de la nueva autorizacion en ARCA.
-- Evidencia: `POST https://app.afipsdk.com/api/v1/afip/auth` respondio `HTTP 200`; expiracion `2026-03-06T03:29:33.538Z`; evidencia sanitizada en `output/ta_wscpe_dev_20260305_122933.json`.
+- Cambios: Reintento de obtencion de TA con ProveedorLegacy luego de la nueva autorizacion en ARCA.
+- Evidencia: `POST https://app.proveedor-legacy.example/api/v1/afip/auth` respondio `HTTP 200`; expiracion `2026-03-06T03:29:33.538Z`; evidencia sanitizada en `output/ta_wscpe_dev_20260305_122933.json`.
 - Siguiente accion: Iniciar Paso 6 ejecutando `dummy` y `consultarUltNroOrden`.
 
 - Fecha: 2026-03-05
@@ -194,24 +194,24 @@ Bitacora cronologica obligatoria del proyecto.
 - Fecha: 2026-03-05
 - Paso: general
 - Cambios: Validacion de identidad real del certificado productivo y deteccion de desalineacion con `AFIP_CUIT` configurado en `.env.prod`.
-- Evidencia: `certutil -dump certs\\CPE_4ace6a8e9a979c89.crt` informo `SERIALNUMBER=CUIT 30547090523`; `.env.prod` contiene `AFIP_CUIT=20049687495`; prueba controlada con env temporal (`AFIP_CUIT=30547090523`, `AFIP_CUIT_REPRESENTADA=30547090523`) devolvio `HTTP 400` de AfipSDK por limite de CUITs (salida en `output/prod_auth_attempt_cuit30547090523_20260305.txt`).
-- Siguiente accion: Habilitar en AfipSDK el uso del CUIT `30547090523` (upgrade/reset de cupo) y luego fijar `AFIP_CUIT`/`AFIP_CUIT_REPRESENTADA` en `30547090523` para repetir consulta de la CPE `00002-00012419`.
+- Evidencia: `certutil -dump certs\\CPE_4ace6a8e9a979c89.crt` informo `SERIALNUMBER=CUIT 30547090523`; `.env.prod` contiene `AFIP_CUIT=20049687495`; prueba controlada con env temporal (`AFIP_CUIT=30547090523`, `AFIP_CUIT_REPRESENTADA=30547090523`) devolvio `HTTP 400` de ProveedorLegacy por limite de CUITs (salida en `output/prod_auth_attempt_cuit30547090523_20260305.txt`).
+- Siguiente accion: Habilitar en ProveedorLegacy el uso del CUIT `30547090523` (upgrade/reset de cupo) y luego fijar `AFIP_CUIT`/`AFIP_CUIT_REPRESENTADA` en `30547090523` para repetir consulta de la CPE `00002-00012419`.
 
 - Fecha: 2026-03-05
 - Paso: general
-- Cambios: Confirmacion del usuario de `access_token` nuevo en AfipSDK y continuidad del bloqueo para alta del CUIT empresa.
+- Cambios: Confirmacion del usuario de `access_token` nuevo en ProveedorLegacy y continuidad del bloqueo para alta del CUIT empresa.
 - Evidencia: Intercambio operativo en sesion (token renovado, sin alta efectiva del CUIT adicional en plan actual).
-- Siguiente accion: Gestionar alta del CUIT `30547090523` desde `Billing`/plan en AfipSDK o solicitar desbloqueo a soporte con el `request ID` del error de limite.
+- Siguiente accion: Gestionar alta del CUIT `30547090523` desde `Billing`/plan en ProveedorLegacy o solicitar desbloqueo a soporte con el `request ID` del error de limite.
 
 - Fecha: 2026-03-05
 - Paso: general
-- Cambios: Verificacion de reglas de cupo de CUITs en AfipSDK para explicar bloqueo en plan Free.
-- Evidencia: Fuente oficial `https://afipsdk.com/pricing/` (plan `Free` incluye `1 CUIT`) y FAQ client-side de AfipSDK (`/_astro/faq-section.Bc9UoEEO.js`) indicando que el conteo de CUIT se realiza por "usuario de ARCA que use tu app"; respaldos locales en `output/_afipsdk_pricing_raw.html` y `output/_afipsdk_faq_section.js`.
-- Siguiente accion: Si el contador del periodo ya esta consumido, subir a plan con mayor cupo o pedir reset manual a soporte AfipSDK indicando el error `27706cc4-f521-4eb1-a830-42a74333fa81`.
+- Cambios: Verificacion de reglas de cupo de CUITs en ProveedorLegacy para explicar bloqueo en plan Free.
+- Evidencia: Fuente oficial `https://proveedor-legacy.example/pricing/` (plan `Free` incluye `1 CUIT`) y FAQ client-side de ProveedorLegacy (`/_astro/faq-section.Bc9UoEEO.js`) indicando que el conteo de CUIT se realiza por "usuario de ARCA que use tu app"; respaldos locales en `output/_ProveedorLegacy_pricing_raw.html` y `output/_ProveedorLegacy_faq_section.js`.
+- Siguiente accion: Si el contador del periodo ya esta consumido, subir a plan con mayor cupo o pedir reset manual a soporte ProveedorLegacy indicando el error `27706cc4-f521-4eb1-a830-42a74333fa81`.
 
 - Fecha: 2026-03-05
 - Paso: general
-- Cambios: Alta efectiva del CUIT auth productivo `30547090523` en AfipSDK (token nuevo) y actualizacion de `.env.prod` para autenticar con ese CUIT.
+- Cambios: Alta efectiva del CUIT auth productivo `30547090523` en ProveedorLegacy (token nuevo) y actualizacion de `.env.prod` para autenticar con ese CUIT.
 - Evidencia: Prueba con env temporal `tax_id=30547090523` + `cuitRepresentada=30547090523` en `output/prod_cuit30547090523_auth_probe_20260305.json` (auth OK, rechazo de negocio por relacion de representada); prueba con `cuitRepresentada=20042908720` en `output/prod_cuit30547090523_repr20042908720_probe_20260305.json` (`HTTP 200`, `codigo 800`); corrida final con `.env.prod` actualizado en `output/prod_after_envprod_switch_cuit30547090523_20260305.json`.
 - Siguiente accion: Gestionar en ARCA la relacion para que el conjunto de `cuitRepresentada` incluya `30547090523`; luego cambiar `AFIP_CUIT_REPRESENTADA` en `.env.prod` y repetir consulta de CPE.
 
@@ -229,7 +229,7 @@ Bitacora cronologica obligatoria del proyecto.
 
 - Fecha: 2026-03-05
 - Paso: general
-- Cambios: Validacion post-alta en ARCA de `wscpe` para `cuitRepresentada=30547090523`; ajuste del script productivo para permitir forzar TA nuevo y evitar cache de AfipSDK.
+- Cambios: Validacion post-alta en ARCA de `wscpe` para `cuitRepresentada=30547090523`; ajuste del script productivo para permitir forzar TA nuevo y evitar cache de ProveedorLegacy.
 - Evidencia: Se agrego flag `--force-create-ta` en `scripts/prod_consultar_cpe_por_destino.py` (envia `force_create=true` en `/afip/auth`) y se actualizo `README.md` con el nuevo uso. Prueba con env temporal y `cuitRepresentada=30547090523` en `output/prod_post_arca_auth_force_ta_repr30547090523_20260305.json` devolvio `HTTP 200` (sin error de autenticacion). `.env.prod` actualizado a `AFIP_CUIT=30547090523` y `AFIP_CUIT_REPRESENTADA=30547090523`; corrida final `output/prod_after_envprod_repr30547090523_force_ta_20260305.json` con `HTTP 200`; barrido adicional de 3 dias en planta `518477` (`2026-03-03` a `2026-03-05`) en `output/prod_after_arca_auth_barrido_518477_20260303_20260305.json` con `codigo 800`.
 - Siguiente accion: Continuar consultas funcionales de CPE en prod con la nueva representada (iterar plantas/rangos/metodos para ubicar la CPE esperada `00002-00012419`).
 
@@ -295,8 +295,8 @@ Bitacora cronologica obligatoria del proyecto.
 
 - Fecha: 2026-03-06
 - Paso: general
-- Cambios: Documentacion de backlog tecnico en archivos separados: metodos adicionales de `wscpe` y propuestas de otros servicios AFIP SDK para pyme agro (incluyendo facturacion, validacion de comprobantes, padron y descarga de comprobantes).
-- Evidencia: Nuevos archivos `docs/metodos-wscpe-a-explotar.md` y `docs/propuestas-afipsdk-pyme-agro.md`; actualizacion de evidencia en `docs/step-by-step.md` (Nota adicional 5 del Paso 7).
+- Cambios: Documentacion de backlog tecnico en archivos separados: metodos adicionales de `wscpe` y propuestas de otros servicios ProveedorLegacy para pyme agro (incluyendo facturacion, validacion de comprobantes, padron y descarga de comprobantes).
+- Evidencia: Nuevos archivos `docs/metodos-wscpe-a-explotar.md` y `docs/propuestas-servicios-pyme-agro.md`; actualizacion de evidencia en `docs/step-by-step.md` (Nota adicional 5 del Paso 7).
 - Siguiente accion: Priorizar el primer bloque de integracion (catalogos `wscpe` + consulta/reconciliacion en `wsfe` + descarga por `mis-comprobantes`) y definir scripts de prueba por servicio.
 
 - Fecha: 2026-03-12
@@ -343,7 +343,7 @@ Bitacora cronologica obligatoria del proyecto.
 
 - Fecha: 2026-03-13
 - Paso: general
-- Cambios: Generacion local de nuevo par criptografico (`key + CSR`) para homologacion ARCA del CUIT DEV, para autenticacion WSAA sin dependencia de AfipSDK.
+- Cambios: Generacion local de nuevo par criptografico (`key + CSR`) para homologacion ARCA del CUIT DEV, para autenticacion WSAA sin dependencia de ProveedorLegacy.
 - Evidencia: `certs/cuit_20049687495_wscpe_dev_20260313.key`, `certs/cuit_20049687495_wscpe_dev_20260313.csr`; verificacion de subject con `certutil -dump` (`SERIALNUMBER=CUIT 20049687495`, `CN=wscpe-dev`, `O=Eduardo Beraza`, `C=AR`).
 - Siguiente accion: Subir el CSR en ARCA homologacion, descargar el CRT emitido, actualizar `.env` (`AFIP_CERT_PATH`/`AFIP_KEY_PATH`) y validar TA con `--force-create-ta`.
 
@@ -454,3 +454,52 @@ Bitacora cronologica obligatoria del proyecto.
 - Cambios: Upgrade de memoria de chat a flujo jerarquico `hito -> subhitos -> mini_hitos` con `--plan-file` (YAML principal, JSON opcional), validaciones de schema/estados/IDs, auto-carry de mini-hitos abiertos desde `context_t-1` y bootstrap priorizando foco diario.
 - Evidencia: `scripts/context_checkpoint.py` refactorizado (modo jerarquico + retrocompatibilidad del modo plano); `tests/unit/test_context_checkpoint.py` ampliado con cobertura de parseo YAML, schema invalido, auto-carry, bootstrap operativo y sanitizacion; agregado `docs/chat-context/plan.yaml` como plantilla; `docs/chat-context/README.md`, `README.md` y `AGENTS.md` actualizados; nueva declaracion de dependencia en `requirements.txt` (`PyYAML`). Validaciones: `py -3 -m unittest tests.unit.test_context_checkpoint` => `Ran 7 tests ... OK`; `py -3 -m unittest discover -s tests -p "test_*.py"` => `Ran 11 tests ... OK`. Corridas operativas: `py -3 scripts/context_checkpoint.py legacy-init`; `py -3 scripts/context_checkpoint.py checkpoint --plan-file docs/chat-context/plan.yaml --estado in_progress --proximo "Ejecutar mini-hitos pendientes de hoy" --refs "docs/work-log.md,docs/chat-context/plan.yaml"`; `py -3 scripts/context_checkpoint.py bootstrap --with-legacy`.
 - Siguiente accion: Usar `docs/chat-context/plan.yaml` como entrada diaria para gestionar 3/4/5 mini-hitos por subhito y cerrar parcialmente cada rama sin perder arrastre automatico.
+
+- Fecha: 2026-03-18
+- Paso: general
+- Cambios: Se crea la carpeta `to_do` con el paso a paso operativo actual por `hito -> subhito -> mini-hito`, fijando como primer frente de trabajo "BORRAR cualquier cosa relacionada con proveedor legacy". Tambien se actualizan referencias documentales para distinguir plan actual vs documento historico.
+- Evidencia: Nuevo archivo `to_do/step-by-step-actual.md`; `README.md` actualizado en "Documentacion operativa" para incluir el plan actual; `docs/step-by-step.md` actualizado con nota de transicion a `to_do/step-by-step-actual.md`.
+- Siguiente accion: Ejecutar el Subhito 1.1 (inventario total de ProveedorLegacy), registrar hallazgos en esta bitacora y luego avanzar con la limpieza controlada.
+
+- Fecha: 2026-03-18
+- Paso: general
+- Cambios: Inicio efectivo del Hito 1 (eliminar proveedor legacy): se ejecuto inventario tecnico del repo con busqueda case-insensitive de patrones legacy (nombre de proveedor, dominio legacy y access token legacy), y se clasificaron hallazgos por tipo/impacto para definir orden de borrado seguro.
+- Evidencia: `rg --line-number -i --hidden --glob "!.git/*" "proveedorlegacy|proveedor-legacy\\.example|legacy_access_token"`; resultado consolidado: `64` referencias en `14` archivos versionados (sin contar `to_do/step-by-step-actual.md`). Priorizacion definida en `to_do/step-by-step-actual.md` (Subhito 1.1 COMPLETADO, orden de borrado por riesgo).
+- Siguiente accion: Ejecutar Subhito 1.2 comenzando por limpieza de configuracion/codigo (`.env.example` + `scripts/context_checkpoint.py`) y luego ajustar tests.
+
+- Fecha: 2026-03-18
+- Paso: general
+- Cambios: Cierre del Subhito 1.2 (limpieza de configuracion/codigo) y avance de limpieza documental operativa. Se removio `LEGACY_ACCESS_TOKEN` de `.env.example`, se generalizo el sanitizado de secretos en `scripts/context_checkpoint.py` para no depender de claves nominales legacy, y se limpiaron referencias legacy en documentacion activa (`README*`, `AGENTS.md`, `docs/step-by-step-cpe-dev.md`, `docs/step-by-step-arca-servicios-cuit.md`, `docs/wscpe-compatibilidad-parcial.md`).
+- Evidencia: Validacion tecnica `py -3 -m unittest tests.unit.test_context_checkpoint` => `Ran 7 tests ... OK`; `py -3 -m unittest discover -s tests -p "test_*.py"` => `Ran 11 tests ... OK`. Barrido operativo: `rg --line-number -i --glob "!docs/work-log.md" --glob "!docs/chat-context/**" --glob "!docs/metodos-wscpe-a-explotar.md" --glob "!docs/propuestas-servicios-pyme-agro.md" "proveedorlegacy|proveedor-legacy\\.example|legacy_access_token" docs README.md README_integral.md AGENTS.md .env.example scripts/context_checkpoint.py tests/unit/test_context_checkpoint.py` => `0` coincidencias. Pendientes legacy quedan acotados a `docs/work-log.md`, `docs/chat-context/bootstrap_prompt.md`, `docs/chat-context/legacy_worklog.md`, `docs/metodos-wscpe-a-explotar.md`, `docs/propuestas-servicios-pyme-agro.md`.
+- Siguiente accion: Ejecutar Subhito 1.3.4/1.3.5 para resolver backlog e historicos, definiendo criterio de preservacion de trazabilidad antes de editar `docs/work-log.md` y `docs/chat-context/*`.
+
+- Fecha: 2026-03-18
+- Paso: general
+- Cambios: Cierre del Subhito 1.3.4 (limpieza de backlog documental). Se reemplazaron enlaces legacy en `docs/metodos-wscpe-a-explotar.md` por referencias oficiales/locales ARCA, y se renombro la propuesta de servicios pyme a `docs/propuestas-servicios-pyme-agro.md` con contenido alineado a servicios ARCA y manuales locales.
+- Evidencia: `rg --line-number -i --hidden --glob "!.git/*" "proveedorlegacy|proveedor-legacy\\.example|legacy_access_token"` deja coincidencias solo en trazabilidad historica (`docs/work-log.md`, `docs/chat-context/*`) y en el plan activo `to_do/step-by-step-actual.md`.
+- Siguiente accion: Definir y ejecutar criterio de limpieza para historicos (`docs/work-log.md`, `docs/chat-context/*`) preservando evidencia de transicion.
+
+- Fecha: 2026-03-18
+- Paso: general
+- Cambios: Cierre del Subhito 1.3.5 (tratamiento de historicos) mediante anonimizado de referencias legacy en `docs/work-log.md` y `docs/chat-context/*`, preservando cronologia y evidencia tecnica. Se completa limpieza textual del hito en `to_do/step-by-step-actual.md` para evitar menciones residuales del proveedor legacy.
+- Evidencia: `rg --line-number -i --hidden --glob "!.git/*" "<patrones_legacy_token_dominio_proveedor>"` => sin coincidencias en todo el repo.
+- Siguiente accion: Cerrar Subhito 1.4 con verificacion final de smoke y documentar bloqueo o OK.
+
+- Fecha: 2026-03-18
+- Paso: general
+- Cambios: Verificacion final del Hito 1: tests unitarios OK y smoke `wscpe` ejecutado con bloqueo de entorno local por certificado faltante.
+- Evidencia: `py -3 -m unittest discover -s tests -p "test_*.py"` => `Ran 11 tests ... OK`; `py -3 scripts/wscpe_dummy.py --env-file .env.prod --fallback-env-file .env` => `ConfigError: AFIP_CERT_PATH does not exist: certs/CPE_4ace6a8e9a979c89.crt`; `py -3 scripts/wscpe_consultar_ult_nro_orden.py --env-file .env.prod --fallback-env-file .env --tipo 74 --sucursal 2 --force-create-ta` => mismo `ConfigError`.
+- Siguiente accion: Restaurar el archivo de certificado en `certs/` o corregir `AFIP_CERT_PATH` en `.env.prod`, reintentar smoke y marcar Hito 1 como COMPLETADO.
+
+- Fecha: 2026-03-18
+- Paso: general
+- Cambios: Migracion del flujo manual ARCA web al directorio activo `to_do/arca/`. Se crea paquete operativo (`README` + 4 guias), se integra nuevo Hito 2 en `to_do/step-by-step-actual.md`, se actualizan referencias globales (`README.md`, `docs/step-by-step.md`) y se marcan como historicos los documentos fuente en `docs/`.
+- Evidencia: `Get-ChildItem -Name to_do/arca` => `01-only-web.md`, `02-certificados.md`, `03-servicios-cuit.md`, `04-reonboarding-checklist.md`, `README.md`; `rg --line-number "Documento historico; version activa en" docs/step-by-step-only-arca-web.md docs/pasos-certificados-arca.md docs/step-by-step-arca-servicios-cuit.md docs/arca-reonboarding-checklist.md` => coincidencia en los 4 archivos; `rg --line-number "Hito 2 - Operacion manual ARCA web|Subhito 2.1|Subhito 2.2|Subhito 2.3" to_do/step-by-step-actual.md` => hito/subhitos presentes; `rg --line-number "to_do/arca/README.md" README.md docs/step-by-step.md` => referencias activas presentes.
+- Siguiente accion: Ejecutar el Subhito 2.2 (validar flujo manual por ambiente) usando `to_do/arca/` como unica guia activa y registrar evidencia por corrida.
+
+- Fecha: 2026-03-18
+- Paso: general
+- Cambios: Ajuste de usabilidad en la guia activa `to_do/arca/01-only-web.md`: se agrega formato checklist con casillas `[ ]` por item para marcar progreso manual con `[x]` durante la operacion en ARCA.
+- Evidencia: `to_do/arca/01-only-web.md` actualizado (secciones 1..7 con checklist operativo); validacion rapida por lectura del archivo en workspace.
+- Siguiente accion: Replicar el mismo formato checklist en `to_do/arca/02-certificados.md` y `to_do/arca/03-servicios-cuit.md` si se quiere unificar el estilo de ejecucion manual.
+

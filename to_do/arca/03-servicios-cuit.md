@@ -1,8 +1,6 @@
-# Step by Step ARCA - Alta Manual de Servicios del CUIT
+# Step by Step ARCA - Alta Manual de Servicios del CUIT (Activo)
 
-> Documento historico; version activa en `to_do/arca/03-servicios-cuit.md`.
-
-Fecha: 2026-03-16  
+Fecha: 2026-03-18  
 Scope: tareas manuales en ARCA para habilitar servicios SOAP del CUIT (base `wscpe` + fase 2), separando `dev` y `prod`.
 
 ## 0) Objetivo
@@ -14,7 +12,7 @@ Dejar habilitados en ARCA los servicios necesarios para iterar integraciones del
 3. Confirmar que el certificado del ambiente ya esta emitido y asociado al computador fiscal.
 4. Tener a mano el listado de servicios a habilitar (prioridad sugerida abajo).
 
-Nota: el flujo de certificados ya esta documentado en `docs/pasos-certificados-arca.md`.
+Nota: el flujo de certificados manuales activos se sigue en `to_do/arca/02-certificados.md`.
 
 ## 2) Alta manual por servicio (repetir por cada WS y ambiente)
 1. Ingresar con Clave Fiscal del CUIT que administra relaciones.
@@ -63,9 +61,3 @@ Archivos clave:
 2. Registrar mensaje exacto del bloqueo y contexto (ambiente, servicio, CUITs).
 3. Guardar evidencia y dejar constancia en `docs/work-log.md`.
 4. Continuar con el siguiente servicio no bloqueado del mismo hito.
-
-## 7) Donde quedo el paso a paso viejo
-No quedo como archivo unico separado en esta version del repo. La trazabilidad historica esta en:
-- `docs/work-log.md` (entradas historicas de alta ARCA + pruebas del flujo legacy).
-- `docs/step-by-step.md` (documento historico/transicion).
-- `docs/step-by-step-cpe-dev.md` (flujo vigente ARCA directo).

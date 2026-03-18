@@ -49,7 +49,7 @@ class ContextCheckpointTests(unittest.TestCase):
 - Fecha: 2026-03-02
 - Paso: 2
 - Cambios: Actualizacion con token=abc y sign=def.
-- Evidencia: AFIPSDK_ACCESS_TOKEN=foo
+- Evidencia: LEGACY_ACCESS_TOKEN=foo
 - Siguiente accion: Cerrar.
 """
         (self.repo / "docs" / "work-log.md").write_text(sample_worklog, encoding="utf-8")
@@ -73,7 +73,7 @@ class ContextCheckpointTests(unittest.TestCase):
         self.assertIn(f"- cutoff_commit: `{head_hash}`", first_text)
         self.assertIn("[REDACTED]", first_text)
         self.assertNotIn("token=abc", first_text)
-        self.assertNotIn("AFIPSDK_ACCESS_TOKEN=foo", first_text)
+        self.assertNotIn("LEGACY_ACCESS_TOKEN=foo", first_text)
 
         out_path_2 = context_checkpoint.legacy_init(self.repo)
         second_text = out_path_2.read_text(encoding="utf-8")
@@ -315,7 +315,7 @@ subhitos:
     def test_sanitize_text_redacts_sensitive_values(self) -> None:
         raw = """
 token=abc123 sign:xyz987
-AFIPSDK_ACCESS_TOKEN=supersecret
+LEGACY_ACCESS_TOKEN=supersecret
 {"token":"tok","sign":"sig","password":"pw"}
 -----BEGIN PRIVATE KEY-----
 abcd
