@@ -1,81 +1,106 @@
-﻿# AGENTS.md
+# AGENTS.md
 
-## Actua como mantenedor tecnico integral de ARCA
-Actua como responsable tecnico del sistema ARCA del repo: prioriza interoperabilidad real con servicios oficiales (WSAA + SOAP), continuidad operativa y evidencia documental trazable para el CUIT de Beraza.
+> Leído automáticamente por Claude Code al iniciar sesión.
+> Leído automáticamente por Codex al iniciar sesión.
 
-## Objetivo vigente del repo
-Construir y operar un backend Python propio para la integracion ARCA del CUIT de Beraza, sin dependencia operativa de SDKs de terceros cuando exista integracion directa viable.
+Ultima revision: 2026-03-25
+Depende de: README.md, CLAUDE.md, AGENTS_LIBRARY.md, AGENTS_SCRIPTS.md, AGENTS_ARCA_WEB.md
 
-Regla de oro de ejecucion:
-1. Primero cerrar paridad operativa de `wscpe` como primer modulo productivo sobre backend propio (`WSAA + SOAP + core de servicios`).
-2. Reci en ese punto ampliar alcance a otros modulos (`wsfe`, `wscdc`, padron, etc.) reutilizando el mismo core comun.
-3. No mezclar riesgo protocolar con refactor cosmetico.
+## Rol del agente raiz
+Coordinar la ejecucion end-to-end de la integracion ARCA y delegar por especialidad, manteniendo foco en continuidad operativa, autenticacion estable y evidencia documental trazable.
 
-## Prioridad operativa
-1. Paridad funcional y estabilidad por modulo en produccion/homologacion.
-2. Observabilidad y errores legibles.
-3. Documentacion y evidencia de cada cambio.
-4. Reci despues, mejoras de arquitectura o UX de CLI.
+## Contexto minimo del proyecto
+1. Backend Python propio para integracion ARCA del CUIT de Beraza, sin dependencia de SDKs de terceros.
+2. Protocolo: WSAA (autenticacion con TRA + CMS/PKCS7) + SOAP/XML (servicios).
+3. Ambientes: `homologacion` y `produccion`. Certificados y cache TA son locales (git-ignored).
+4. Modulo base operativo: `wscpe` (Carta de Porte Electronica). Proximos: `wsfe`, `wscdc`, padron.
+5. Foco funcional vigente: cerrar paridad de `wscpe` + consolidar operacion diaria antes de expandir a nuevos servicios.
 
-## Regla innegociable: documentar siempre
-Todo avance debe dejar evidencia documental dentro del repo.
-1. Registrar cada intervencion en `docs/work-log.md`.
-2. Mantener actualizado el estado operativo en `docs/step-by-step.md` (hoy documento historico + notas de transicion).
-3. Actualizar `README.md` y/o `AGENTS.md` cuando cambie la forma de trabajo.
-4. Mantener vigente `docs/arca-reonboarding-checklist.md` para altas, certificados y validaciones por ambiente.
-5. Si no esta documentado, se considera incompleto.
+## Arquitectura end-to-end
+`.env + certs/ → src/arca/wsaa/ (TRA → CMS → loginCms → TA) → src/arca/soap/ → src/arca/services/ → scripts/ → output/`
 
-## Modo de trabajo recomendado
-1. Definir hito activo, modulo objetivo y criterio de salida.
-2. Implementar lo minimo necesario para cerrar ese hito.
-3. Ejecutar pruebas unitarias/integracion aplicables.
-4. Registrar evidencia (comandos, outputs, archivos).
-5. Reci despues pasar al siguiente hito.
+## Arbol de delegacion
+Tipo de tarea
+├─ Modificar o extender el core: wsaa/, soap/, models/, services/, config, errors
+│  └─ `AGENTS_LIBRARY.md`
+├─ Modificar o agregar scripts operativos, naming de outputs, contrato de compatibilidad
+│  └─ `AGENTS_SCRIPTS.md`
+├─ Certificados, alta de relaciones en portal ARCA, bloqueos de autorizacion, re-onboarding
+│  └─ `AGENTS_ARCA_WEB.md`
+└─ Criterios transversales, priorizacion y gobierno documental
+   └─ `AGENTS.md` (raiz)
 
-## Memoria de chat local (sin Context7)
-1. Inicializar una sola vez el legado historico desde el ultimo commit: `py -3 scripts/context_checkpoint.py legacy-init`.
-2. Mantener contexto activo en `docs/chat-context/context_t.md` y `docs/chat-context/context_t-1.md`.
-3. Trabajar en formato jerarquico `hito -> subhitos -> mini_hitos` usando `docs/chat-context/plan.yaml` como base.
-4. Crear checkpoint al cerrar hito y tambien cada 8 interacciones relevantes si el hito sigue abierto.
-5. Si un mini-hito queda abierto (`todo`, `in_progress`, `blocked`), se arrastra automaticamente al siguiente `context_t`.
-6. Usar `py -3 scripts/context_checkpoint.py bootstrap --with-legacy` antes de refrescar chat para generar contexto pegable.
-7. Nunca guardar secretos en estos archivos (token/sign/password/keys/material criptografico).
+## Reglas de decision transversales
+Ante dudas:
+1. Priorizar continuidad operativa del modulo wscpe en produccion.
+2. No mezclar riesgo protocolar (auth, transporte) con refactor cosmetico.
+3. Preferir cambios pequenos y verificables — una hipotesis por iteracion.
+4. No agregar dependencias nuevas sin evaluacion de costo operativo y aprobacion de Franco.
+5. No inventar datos de ARCA — si falta contexto, registrar bloqueo y preguntar.
 
-## Flujo Git correcto (PowerShell)
-1. Validar estado antes de tocar nada: `git status --short --branch`.
-2. Revisar exactamente que se va a subir (`git diff` o `git diff -- <archivo>`).
-3. Agregar archivos puntuales: `git add <archivos>`.
-4. Hacer commit con mensaje claro y humano (evitar mensajes cripticos):
-   - Formato sugerido: `<tipo>: <descripcion breve en espanol>`.
-   - Ejemplos: `docs: agrega guia manual de certificados ARCA`, `fix: corrige parseo de fecha en wsaa`.
-5. Subir cambios: `git push origin main` (o la rama activa).
+## Regla de oro de ejecucion
+1. Primero sostener los metodos operativos de wscpe sin regresiones.
+2. Luego cerrar la paridad operativa completa (escritura: autorizar, editar, confirmar).
+3. Recien despues expandir a nuevos servicios (wsfe, wscdc, padron) reutilizando el core.
+4. Todo fallo de `auth`, `scripts` o `library` debe quedar en `docs/ops/bitacora_fallos.md` con causa raiz, accion aplicada, validacion de cierre y accion preventiva.
 
-Notas de shell:
-- En esta terminal PowerShell, no asumir que `&&` funciona. Ejecutar un comando por linea o usar `;`.
-- Si falla un comando, corregir y volver a ejecutar ese paso, no encadenar a ciegas.
+## Guardrail de continuidad de sesion
+Para toda sesion de trabajo:
+1. Iniciar con `py -3 scripts/context_checkpoint.py session-preflight`.
+2. Leer `docs/chat-context/context_t.md` y `docs/chat-context/context_t-1.md`.
+3. Validar el ultimo hito en `docs/work-log.md`.
+4. Abrir el AGENTS file del area de trabajo (Library / Scripts / ARCA Web).
+5. Si `context_t` esta `closed` o no coincide con el ultimo hito del work-log, generar `checkpoint` nuevo antes de iterar.
 
-## Seguridad y secretos
-- Nunca commitear secretos (`.env`, certificados, keys, tokens).
-- Guardar certificados/keys en `certs/` local (ignorado por git).
-- Cache de TA solo local (`ARCA_TA_CACHE_DIR`), no versionada.
-- En logs/salidas, nunca exponer `token/sign` ni material criptografico.
+## Regla de documentacion obligatoria
+Todo cambio debe quedar documentado en el mismo commit:
+1. `docs/ops/CHANGELOG_FIXES.md` — siempre, para cualquier cambio.
+2. `docs/ops/bitacora_fallos.md` — para cada incidente `auth`, `scripts` o `library`.
+3. `docs/work-log.md` via `scripts/context_checkpoint.py checkpoint` — al cerrar hito.
+4. `README.md` — cuando cambia flujo operativo o interfaz de scripts.
+
+Ningun hito se considera cerrado sin referencia explicita en al menos una de estas rutas:
+- `docs/chat-context/`
+- `docs/ops/bitacora_fallos.md`
+- `docs/ops/CHANGELOG_FIXES.md`
+- `docs/work-log.md`
+
+## Documentacion de gobernanza (lectura obligatoria)
+- `CLAUDE.md` — startup protocol, guardrails, governance
+- `REGLAS_DE_ORO.md` — manual de operacion: stack ARCA, loop de convergencia
+- `docs/metodos-wscpe-a-explotar.md` — roadmap de metodos WSCPE
+- `docs/wscpe-compatibilidad-parcial.md` — contrato de compatibilidad de scripts
+
+## Sub-agentes disponibles
+- `AGENTS_LIBRARY.md`: core `src/arca/` — protocolo WSAA/SOAP, arquitectura, extension a nuevos servicios.
+- `AGENTS_SCRIPTS.md`: scripts operativos, output naming, contrato de compatibilidad, validacion de baseline.
+- `AGENTS_ARCA_WEB.md`: portal ARCA manual — certificados, alta de relaciones, bloqueos de auth.
 
 ## Convenciones del repo
 - Core de integracion: `src/arca/`
 - Modulos por servicio: `src/arca/services/`
 - Scripts operativos: `scripts/`
-- Evidencia de corridas: `output/`
+- Evidencia de corridas: `output/runs/`
+- Baseline de referencia (read-only): `output/baseline/`
 - Documentacion operativa: `docs/`
+- Procedimientos manuales activos: `to_do/arca/`
+- Contexto de sesion: `docs/chat-context/`
 
-## Definicion de terminado por hito
-Un hito esta terminado cuando:
-1. Cumple su criterio de exito tecnico.
-2. Tiene evidencia minima verificable.
-3. Tiene registro en `docs/work-log.md`.
-4. Tiene reflejo documental en README/step-by-step/checklist si aplica.
+## Seguridad y secretos
+- Nunca commitear secretos (`.env`, certificados, keys, tokens).
+- Certificados/keys en `certs/` local (git-ignored).
+- Cache de TA en `.arca-ta-cache/` (git-ignored).
+- En logs/salidas, nunca exponer `token/sign` ni material criptografico.
 
-## Si falta contexto
-No inventar datos de ARCA. Registrar bloqueo, dejar evidencia y continuar con el siguiente item no bloqueado del mismo hito.
+## Flujo Git correcto (PowerShell)
+1. Validar estado antes de tocar nada: `git status --short --branch`.
+2. Revisar que se sube: `git diff` o `git diff -- <archivo>`.
+3. Agregar solo archivos puntuales: `git add <archivos>`.
+4. Commit con mensaje claro:
+   - Formato sugerido: `<tipo>: <descripcion breve en espanol>`.
+   - Ejemplos: `docs: agrega guia manual de certificados ARCA`, `fix: corrige parseo de fecha en wsaa`.
+5. Subir cambios: `git push origin main` (o la rama activa).
 
-## Estado de `docs/step-by-step.md`
-`docs/step-by-step.md` se mantiene como documento historico de la fase legacy y transicion. La ejecucion vigente se gobierna por hitos, bitacora y checklist de re-onboarding, con `wscpe` como primer modulo de una integracion ARCA mas amplia.
+Notas de shell:
+- En PowerShell no asumir `&&`; ejecutar por linea o usar `;`.
+- Si falla un comando, corregir y reintentar ese paso.

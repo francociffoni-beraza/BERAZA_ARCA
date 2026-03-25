@@ -72,7 +72,10 @@ Bootstrap para refrescar chat:
 
 ## Documentacion operativa
 - Flujo activo ARCA web (manual): `to_do/arca/README.md`
-- Reglas de colaboracion: `AGENTS.md`
+- Sub-agente core library (`src/arca/`): `AGENTS_LIBRARY.md`
+- Sub-agente scripts y outputs (`scripts/`, `output/`): `AGENTS_SCRIPTS.md`
+- Sub-agente portal ARCA (certs, auth, alta de servicios): `AGENTS_ARCA_WEB.md`
+- ~~`AGENTS.md`~~ — DEPRECATED (reemplazado por los tres archivos anteriores)
 - Bitacora obligatoria: `docs/work-log.md`
 - Plan operativo actual por hitos/minihitos: `to_do/step-by-step-actual.md`
 - Estado historico y transicion: `docs/step-by-step.md`
